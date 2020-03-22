@@ -13,7 +13,7 @@
 		<link rel="manifest" href="manifest.webmanifest" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
 		<style>
-			.help, #addToDesktopButton {
+			.help, #chromeNotification {
 				display: none;
 			}
 			.noselect {
@@ -28,13 +28,31 @@
 		</style>
 	</head>
 	<body>
-    <button id="addToDesktopButton">Add to home screen</button>
 		<div class="noselect" id="app">
 			<noscript>
 				<div class="notification is-danger">
 					<p class="has-text-centered">You need to enable JavaScript to run this app.</p>
 				</div>
 			</noscript>
+			<div class="notification is-info" id="chromeNotification">
+				<p class="has-text-centered">
+					You can add this app to your home screen and use it even offline.
+				</p>
+				<div class="columns is-mobile">
+					<div class="column"></div>
+					<div class="column is-narrow">
+						<button class="button is-success" id="addToDesktopButtonAccept">
+							Sure, let's do it
+						</button>
+					</div>
+					<div class="column is-narrow">
+						<button class="button is-warning" id="addToDesktopButtonDecline">
+							No, thanks
+						</button>
+					</div>
+					<div class="column"></div>
+				</div>
+			</div>
 			<section class="section">
 				<div class="columns is-mobile">
 					<div class="column is-hidden-mobile"></div>

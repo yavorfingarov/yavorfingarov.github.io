@@ -250,6 +250,46 @@ function getNextResetTime(now) {
 	return result;
 }
 
+function isChrome() {
+	let isChromium = window.chrome;
+	let winNav = window.navigator;
+	let vendorName = winNav.vendor;
+	let isOpera = typeof window.opr !== "undefined";
+	let isIEedge = winNav.userAgent.contains("Edge");
+	let isIOSChrome = winNav.userAgent.match("CriOS");
+	if (isIOSChrome) {
+		result = true;
+	} else if(
+		isChromium !== null &&
+		typeof isChromium !== "undefined" &&
+		vendorName === "Google Inc." &&
+		isOpera === false &&
+		isIEedge === false
+	) {
+		result = true;
+	}
+}
+
+function attachChromeSpecificEventHandlers() {
+	window.addEventListener("beforeinstallprompt", (event) => {
+		event.preventDefault();
+		if (!state.addToDesktopNotified) {
+			state.addToDesktopNotified = true;
+			let deferredPrompt = event;
+			let element = q("#chromeNotification");
+			show(element);
+			q("#addToDesktopButtonAccept").addEventListener("click", () => {
+				hide(element);
+				deferredPrompt.prompt();
+				deferredPrompt.userChoice.then(() => deferredPrompt = null);
+			});
+			q("#addToDesktopButtonDecline").addEventListener("click", () => {
+				hide(element);
+			});
+		}
+	});
+}
+
 function attachEventHandlers() {
 	q("#settingsButton").addEventListener("click", showSettings);
 	q("#saveButton").addEventListener("click", saveSettings);
@@ -257,21 +297,10 @@ function attachEventHandlers() {
 	q(constants.formItemsQuery).forEach(element => element.addEventListener("input", fieldChange));
 	q("#drinkButtons .button").forEach(element => element.addEventListener("click", drink));
 	q("#undoButton").addEventListener("click", undoDrink);
-	
 	if("serviceWorker" in navigator) {
 		navigator.serviceWorker.register("serviceWorker.js");
 	}
-	window.addEventListener("beforeinstallprompt", (event) => {
-		event.preventDefault();
-		let deferredPrompt = event;
-		//let button = q("#addToDesktopButton");
-		//show(button);
-		button.addEventListener("click", (e) => {
-			//hide(button);
-			deferredPrompt.prompt();
-			deferredPrompt.userChoice.then(() => deferredPrompt = null);
-		});
-	});
+	attachChromeSpecificEventHandlers();
 }
 
 function init() {
