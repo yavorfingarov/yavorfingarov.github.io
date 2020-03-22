@@ -218,11 +218,11 @@ function updateProgress() {
 	let bar = q("#progressBar");
 	bar.max = state.goalVolume;
 	bar.value = current;
-	q("#goal").textContent = (state.showLiters && state.units === "ml") ? 
+	q("#goal").textContent = (state.showLiters && state.units === "ml") ?
 		convertTo(state.goalVolume, "l").toFixed(2) : state.goalVolume;
-	q("#current").textContent = (state.showLiters && state.units === "ml") ? 
+	q("#current").textContent = (state.showLiters && state.units === "ml") ?
 		convertTo(current, "l").toFixed(2) : current;
-	q("#unitName").textContent = (state.showLiters && state.units === "ml") ? 
+	q("#unitName").textContent = (state.showLiters && state.units === "ml") ?
 		state.units.slice(1) : state.units;
 	q("#undoButton").disabled = (state.progress.length === 0);
 	if (current >= state.goalVolume) {
@@ -288,3 +288,21 @@ let state = getProxy(localStorage, {
 });
 
 init();
+
+if("serviceWorker" in navigator) {
+	navigator.serviceWorker.register("serviceWorker.js");
+}
+
+let deferredPrompt;
+let button = q("#add-desktop-button");
+hide(button);
+window.addEventListener("beforeinstallprompt", (event) => {
+	event.preventDefault();
+	deferredPrompt = event;
+	show(button);
+	button.addEventListener("click", (e) => {
+		hide(button);
+		deferredPrompt.prompt();
+		deferredPrompt.userChoice.then(() => deferredPrompt = null);
+	});
+});
