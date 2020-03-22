@@ -255,7 +255,7 @@ function isChrome() {
 	let winNav = window.navigator;
 	let vendorName = winNav.vendor;
 	let isOpera = typeof window.opr !== "undefined";
-	let isIEedge = winNav.userAgent.contains("Edge");
+	let isIEedge = winNav.userAgent.includes("Edge");
 	let isIOSChrome = winNav.userAgent.match("CriOS");
 	if (isIOSChrome) {
 		result = true;
