@@ -1,5 +1,7 @@
 {
 	"name": "drink.js",
+	"short_name": "drink.js",
+	"description": "This is a small helper app to track your water intake.",
 	"icons": [
 		{
 			"src": "favicon.ico",
@@ -17,7 +19,8 @@
 			"sizes": "512x512"
 		}
 	],
-	"display": "standalone",
+	"start_url": "index.html"
+	"display": "fullscreen",
 	"theme_color": "#000000",
 	"background_color": "#ffffff"
 	"manifest_version": 2
