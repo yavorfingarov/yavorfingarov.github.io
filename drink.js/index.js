@@ -294,11 +294,10 @@ if("serviceWorker" in navigator) {
 }
 
 let deferredPrompt;
-let button = q("#add-desktop-button");
-hide(button);
 window.addEventListener("beforeinstallprompt", (event) => {
 	event.preventDefault();
 	deferredPrompt = event;
+	let button = q("#addToDesktopButton");
 	show(button);
 	button.addEventListener("click", (e) => {
 		hide(button);
