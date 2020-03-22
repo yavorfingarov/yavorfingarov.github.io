@@ -250,26 +250,6 @@ function getNextResetTime(now) {
 	return result;
 }
 
-function isChrome() {
-	let isChromium = window.chrome;
-	let winNav = window.navigator;
-	let vendorName = winNav.vendor;
-	let isOpera = typeof window.opr !== "undefined";
-	let isIEedge = winNav.userAgent.includes("Edge");
-	let isIOSChrome = winNav.userAgent.match("CriOS");
-	if (isIOSChrome) {
-		result = true;
-	} else if(
-		isChromium !== null &&
-		typeof isChromium !== "undefined" &&
-		vendorName === "Google Inc." &&
-		isOpera === false &&
-		isIEedge === false
-	) {
-		result = true;
-	}
-}
-
 function attachChromeSpecificEventHandlers() {
 	window.addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
@@ -300,9 +280,7 @@ function attachEventHandlers() {
 	if("serviceWorker" in navigator) {
 		navigator.serviceWorker.register("serviceWorker.js");
 	}
-	if (isChrome()) {
-		attachChromeSpecificEventHandlers();
-	}
+	attachChromeSpecificEventHandlers();
 }
 
 function init() {
