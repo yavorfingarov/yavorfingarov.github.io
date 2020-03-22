@@ -264,10 +264,10 @@ function attachEventHandlers() {
 	window.addEventListener("beforeinstallprompt", (event) => {
 		event.preventDefault();
 		let deferredPrompt = event;
-		let button = q("#addToDesktopButton");
-		show(button);
+		//let button = q("#addToDesktopButton");
+		//show(button);
 		button.addEventListener("click", (e) => {
-			hide(button);
+			//hide(button);
 			deferredPrompt.prompt();
 			deferredPrompt.userChoice.then(() => deferredPrompt = null);
 		});
