@@ -1,155 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="theme-color" content="#ffffff" />
-		<meta name="description" content="This is a small helper app to track your water intake."/>
-		<meta name="keywords" content="water, drink, js">
-		<meta name="author" content="Yavor Fingarov">
-		<title>drink.js</title>
-		<!-- Icon from: https://www.pngrepo.com/svg/200214/water-bottle-water -->
-		<link rel="icon" href="favicon.ico" />
-		<link rel="manifest" href="manifest.webmanifest" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-		<style>
-			.help, #chromeNotification {
-				display: none;
-			}
-			.noselect {
-				cursor: default;
-				-webkit-touch-callout: none;
-				-webkit-user-select: none;
-				-khtml-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="noselect" id="app">
-			<noscript>
-				<div class="notification is-danger">
-					<p class="has-text-centered">You need to enable JavaScript to run this app.</p>
-				</div>
-			</noscript>
-			<div class="notification is-info" id="chromeNotification">
-				<p class="has-text-centered">
-					You can add this app to your home screen and use it even offline.
-				</p>
-				<div class="columns is-mobile">
-					<div class="column"></div>
-					<div class="column is-narrow">
-						<button class="button is-success" id="addToDesktopButtonAccept">
-							Sure, let's do it
-						</button>
-					</div>
-					<div class="column is-narrow">
-						<button class="button is-warning" id="addToDesktopButtonDecline">
-							No, thanks
-						</button>
-					</div>
-					<div class="column"></div>
-				</div>
-			</div>
-			<section class="section">
-				<div class="columns is-mobile">
-					<div class="column is-hidden-mobile"></div>
-					<div class="column is-narrow">
-						<h5 class="title is-5">drink.js</h5>
-					</div>
-					<div class="column"></div>
-					<div class="column is-narrow">
-						<button class="button is-warning is-light" id="undoButton">Undo</button>
-					</div>
-					<div class="column is-narrow">
-						<button class="button is-link is-light" id="settingsButton">Settings</button>
-					</div>
-					<div class="column is-hidden-mobile"></div>
-				</div>
-			</section>
-			<section class="section">
-				<div class="columns is-mobile">
-					<div class="column"></div>
-					<div class="column is-3-tablet is-6-mobile" id="drinkButtons">
-						<div class="buttons are-large">
-							<button class="button is-link is-fullwidth" value="glass">Glass</button>
-						</div>
-						<div class="buttons are-large">
-							<button class="button is-link is-fullwidth" value="bottle">Bottle</button>
-						</div>
-					</div>
-					<div class="column"></div>
-				</div>
-			</section>
-			<section class="section">
-				<div class="columns">
-					<div class="column is-hidden-mobile"></div>
-						<div class="column is-6">
-							<progress class="progress is-link" id="progressBar"></progress>
-							<h5 class="title is-5 has-text-centered">
-								<span id="current"></span> / <span id="goal"></span> <span id="unitName"></span>
-							</h5>
-							<h4 class="title is-4 has-text-centered" id="smiley"></h4>
-						</div>
-					<div class="column is-hidden-mobile"></div>
-				</div>
-			</section>
-			<div class="modal" id="settings">
-				<div class="modal-background"></div>
-				<div class="modal-card">
-					<header class="modal-card-head">
-						<p class="modal-card-title">Settings</p>
-					</header>
-					<section class="modal-card-body">
-						<div class="field">
-							<label class="label">Units</label>
-							<div class="select">
-								<select id="units">
-									<option value="ml">milliliters</option>
-									<option value="fl oz">fluid ounces</option>
-								</select>
-							</div>
-						</div>
-						<div class="field">
-							<label class="checkbox">
-								<input type="checkbox" id="showLiters">
-								Show liters on the main screen.
-							</label>
-						</div>
-						<div class="field">
-							<label class="label">Glass</label>
-							<input class="input" type="number" min="1" step="1" id="glassVolume">
-							<p class="help is-danger" id="glassVolumeError">Please check your input.</p>
-						</div>
-						<div class="field">
-							<label class="label">Bottle</label>
-							<input class="input" type="number" min="1" step="1" id="bottleVolume">
-							<p class="help is-danger" id="bottleVolumeError">Please check your input.</p>
-						</div>
-						<div class="field">
-							<label class="label">Goal</label>
-							<input class="input" type="number" min="1" step="1" id="goalVolume">
-							<p class="help is-danger" id="goalVolumeError">Please check your input.</p>
-							<p class="help is-warning" id="goalVolumeWarningTooLow">
-								Please consider drinking more than that.
-								<a href="https://www.webmd.com/diet/how-much-water-to-drink" target="_blank">
-									Read more...
-								</a>
-							</p>
-							<p class="help is-warning" id="goalVolumeWarningTooHigh" hidden>
-								Are you a <a href="https://youtu.be/Rd_BRT6_TPk?t=292" target="_blank">tree</a>?
-							</p>
-						</div>
-					</section>
-					<footer class="modal-card-foot">
-						<button class="button is-success" id="saveButton">Save changes</button>
-						<button class="button" id="cancelButton">Cancel</button>
-					</footer>
-				</div>
-			</div>
-		</div>
-		<script src="index.js"></script>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="This is a small helper app to track your water intake."/>
+    <meta name="keywords" content="water, drink, js">
+    <meta name="author" content="Yavor Fingarov">
+    <title>drink.js</title>
+    <!-- Icon from: https://www.pngrepo.com/svg/200214/water-bottle-water -->
+    <link rel="icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <style>
+      .help, #chromeNotification {
+        display: none;
+      }
+      .noselect {
+        cursor: default;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noselect" id="app">
+      <noscript>
+        <div class="notification is-danger">
+          <p class="has-text-centered">You need to enable JavaScript to run this app.</p>
+        </div>
+      </noscript>
+      <div class="notification is-info" id="chromeNotification">
+        <p class="has-text-centered">
+          You can add this app to your home screen and use it even offline.
+        </p>
+        <div class="columns is-mobile">
+          <div class="column"></div>
+          <div class="column is-narrow">
+            <button class="button is-success" id="addToDesktopButtonAccept">
+              Sure, let's do it
+            </button>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-warning" id="addToDesktopButtonDecline">
+              No, thanks
+            </button>
+          </div>
+          <div class="column"></div>
+        </div>
+      </div>
+      <section class="section">
+        <div class="columns is-mobile">
+          <div class="column is-hidden-mobile"></div>
+          <div class="column is-narrow">
+            <h5 class="title is-5">drink.js</h5>
+          </div>
+          <div class="column"></div>
+          <div class="column is-narrow">
+            <button class="button is-warning is-light" id="undoButton">Undo</button>
+          </div>
+          <div class="column is-narrow">
+            <button class="button is-link is-light" id="settingsButton">Settings</button>
+          </div>
+          <div class="column is-hidden-mobile"></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="columns is-mobile">
+          <div class="column"></div>
+          <div class="column is-3-tablet is-6-mobile" id="drinkButtons">
+            <div class="buttons are-large">
+              <button class="button is-link is-fullwidth" value="glass">Glass</button>
+            </div>
+            <div class="buttons are-large">
+              <button class="button is-link is-fullwidth" value="bottle">Bottle</button>
+            </div>
+          </div>
+          <div class="column"></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="columns">
+          <div class="column is-hidden-mobile"></div>
+            <div class="column is-6">
+              <progress class="progress is-link" id="progressBar"></progress>
+              <h5 class="title is-5 has-text-centered">
+                <span id="current"></span> / <span id="goal"></span> <span id="unitName"></span>
+              </h5>
+              <h4 class="title is-4 has-text-centered" id="smiley"></h4>
+            </div>
+          <div class="column is-hidden-mobile"></div>
+        </div>
+      </section>
+      <div class="modal" id="settings">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Settings</p>
+          </header>
+          <section class="modal-card-body">
+            <div class="field">
+              <label class="label">Units</label>
+              <div class="select">
+                <select id="units">
+                  <option value="ml">milliliters</option>
+                  <option value="fl oz">fluid ounces</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label class="checkbox">
+                <input type="checkbox" id="showLiters">
+                Show liters on the main screen.
+              </label>
+            </div>
+            <div class="field">
+              <label class="label">Glass</label>
+              <input class="input" type="number" min="1" step="1" id="glassVolume">
+              <p class="help is-danger" id="glassVolumeError">Please check your input.</p>
+            </div>
+            <div class="field">
+              <label class="label">Bottle</label>
+              <input class="input" type="number" min="1" step="1" id="bottleVolume">
+              <p class="help is-danger" id="bottleVolumeError">Please check your input.</p>
+            </div>
+            <div class="field">
+              <label class="label">Goal</label>
+              <input class="input" type="number" min="1" step="1" id="goalVolume">
+              <p class="help is-danger" id="goalVolumeError">Please check your input.</p>
+              <p class="help is-warning" id="goalVolumeWarningTooLow">
+                Please consider drinking more than that.
+                <a href="https://www.webmd.com/diet/how-much-water-to-drink" target="_blank">
+                  Read more...
+                </a>
+              </p>
+              <p class="help is-warning" id="goalVolumeWarningTooHigh" hidden>
+                Are you a <a href="https://youtu.be/Rd_BRT6_TPk?t=292" target="_blank">tree</a>?
+              </p>
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success" id="saveButton">Save changes</button>
+            <button class="button" id="cancelButton">Cancel</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>
