@@ -300,7 +300,9 @@ function attachEventHandlers() {
 	if("serviceWorker" in navigator) {
 		navigator.serviceWorker.register("serviceWorker.js");
 	}
-	attachChromeSpecificEventHandlers();
+	if (isChrome()) {
+		attachChromeSpecificEventHandlers();
+	}
 }
 
 function init() {
