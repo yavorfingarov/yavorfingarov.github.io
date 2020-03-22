@@ -257,6 +257,21 @@ function attachEventHandlers() {
 	q(constants.formItemsQuery).forEach(element => element.addEventListener("input", fieldChange));
 	q("#drinkButtons .button").forEach(element => element.addEventListener("click", drink));
 	q("#undoButton").addEventListener("click", undoDrink);
+	
+	if("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("serviceWorker.js");
+	}
+	window.addEventListener("beforeinstallprompt", (event) => {
+		event.preventDefault();
+		let deferredPrompt = event;
+		let button = q("#addToDesktopButton");
+		show(button);
+		button.addEventListener("click", (e) => {
+			hide(button);
+			deferredPrompt.prompt();
+			deferredPrompt.userChoice.then(() => deferredPrompt = null);
+		});
+	});
 }
 
 function init() {
@@ -288,20 +303,3 @@ let state = getProxy(localStorage, {
 });
 
 init();
-
-if("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("serviceWorker.js");
-}
-
-let deferredPrompt;
-window.addEventListener("beforeinstallprompt", (event) => {
-	event.preventDefault();
-	deferredPrompt = event;
-	let button = q("#addToDesktopButton");
-	show(button);
-	button.addEventListener("click", (e) => {
-		hide(button);
-		deferredPrompt.prompt();
-		deferredPrompt.userChoice.then(() => deferredPrompt = null);
-	});
-});
