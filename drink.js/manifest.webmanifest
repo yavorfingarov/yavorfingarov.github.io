@@ -20,7 +20,7 @@
 		}
 	],
 	"start_url": "index.html",
-	"display": "fullscreen",
+	"display": "standalone",
 	"theme_color": "#000000",
 	"background_color": "#ffffff",
 	"manifest_version": 2,
