@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="John Doe">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="theme-color" content="#088">
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"> -->
+
+    <!-- <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css"> -->
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/inter.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/open-sans.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/roboto.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu"> -->
+
+    <link id="css" rel="stylesheet" href="styles.css">
+    <title>Some Title</title>
+</head>
+<body>
+    <header>
+        <h1>Some Title</h1>
+        <nav>
+            <a href="#">Link 1</a> / 
+            <a href="#">Link 2</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Heading 2</h2>
+        <p>Lorem ipsum dolor sit amet, <a href="#" onclick="changeTheme()">consectetur</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam quis enim lobortis scelerisque. Tortor dignissim convallis aenean et tortor at. Cras fermentum odio eu feugiat pretium. Amet purus gravida quis blandit turpis cursus. Neque vitae tempus quam pellentesque nec nam aliquam sem. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Gravida dictum fusce ut placerat orci nulla pellentesque. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Purus faucibus ornare suspendisse sed. <a href="#">Link 1</a></p>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <p>Massa tincidunt nunc pulvinar sapien et ligula. Urna porttitor rhoncus dolor purus non enim praesent. Scelerisque purus semper eget duis at tellus. Cursus sit amet dictum sit amet justo donec enim. Suscipit adipiscing bibendum est ultricies integer quis. Euismod lacinia at quis risus sed. Elementum facilisis leo vel fringilla est ullamcorper eget nulla. Dignissim sodales ut eu sem integer vitae. Et magnis dis parturient montes nascetur ridiculus mus. Odio eu feugiat pretium nibh ipsum consequat nisl. Faucibus vitae aliquet nec ullamcorper sit amet risus. Eget mauris pharetra et ultrices neque ornare aenean euismod elementum. Et malesuada fames ac turpis. Dignissim suspendisse in est ante. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. Et malesuada fames ac turpis egestas integer eget aliquet nibh. Velit egestas dui id ornare. <a href="#">Link 1</a></p>
+        <h3>Heading 3</h3>
+        <p>Vulputate enim nulla aliquet porttitor lacus. Tempus quam pellentesque nec nam aliquam sem. Ultricies integer quis auctor elit. Pretium viverra suspendisse potenti nullam ac. Lacus luctus accumsan tortor posuere. Eleifend quam adipiscing vitae proin sagittis. Faucibus scelerisque eleifend donec pretium vulputate. Risus nullam eget felis eget nunc lobortis. Non nisi est sit amet facilisis. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Et odio pellentesque diam volutpat commodo sed egestas egestas.</p>
+        <p>Tortor consequat id porta nibh venenatis cras sed. Eros donec ac odio tempor. Dictumst quisque sagittis purus sit amet volutpat consequat mauris.</p>
+        <h3>Heading 3</h3>
+        <p>Tortor consequat id porta nibh venenatis cras sed. Eros donec ac odio tempor. Dictumst quisque sagittis purus sit amet volutpat consequat mauris. Integer vitae justo eget magna. Quis vel eros donec ac odio tempor orci dapibus. Lorem sed risus ultricies tristique nulla aliquet. Adipiscing bibendum est ultricies integer quis auctor elit. Interdum posuere lorem ipsum dolor sit. Tortor posuere ac ut consequat. Urna molestie at elementum eu facilisis sed odio morbi. Bibendum neque egestas congue quisque egestas diam. Ac orci phasellus egestas tellus rutrum tellus pellentesque. Laoreet id donec ultrices tincidunt arcu non sodales neque sodales. <a href="#">Link 1</a></p>    
+    </main>
+    <footer>
+        <p>(c) 2021 <a href="LICENSE.md">License</a> <span id="cssName">styles.css</span></p>
+    </footer>
+    <script>
+        var themes = ["styles.css", "new.css", "sakura.css", "awsm.css", "water.css", "vanilla.css", "no.css"];
+        var current = 0;
+        function changeTheme() {
+            current++;
+            if (current === themes.length) {
+                current = 0;
+            }
+            document.getElementById("css").href = themes[current];
+            document.getElementById("cssName").innerText = themes[current];
+        }
+    </script>
+</body>
+</html>
